@@ -1,0 +1,21 @@
+<p>
+  <h1><strong>Title: <%= @post.title %></strong></h1>
+  
+</p>
+ Author: <%= @post.user.name %>
+<p>
+  <%= @post.text %>
+</p>
+ <HR>
+<h3>Comments:</h3>
+<%= render @post.comments %>
+ 
+ <% if current_user %>
+	<h4><small>Add a comment:</small></h4>
+	<%= render "comments/form" %>
+<% end %>
+
+<% if current_user && current_user.id == @post.user.id %>
+<%= link_to 'Edit Post', edit_post_path(@post) %> |
+<% end %>
+<%= link_to 'Back to Posts', '/' %>
